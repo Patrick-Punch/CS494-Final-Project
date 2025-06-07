@@ -5,6 +5,11 @@ const parser = new XMLParser({
   ignoreAttributes: false,
   attributeNamePrefix: '@_',
 });
+type BggItem = {
+  '@_objectid': string;
+  name: string | { '#text'?: string; '@_value'?: string };
+  yearpublished?: string;
+};
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -22,7 +27,7 @@ export async function GET(req: NextRequest) {
   const boardgames = parsed.boardgames?.boardgame || [];
   const items = Array.isArray(boardgames) ? boardgames : [boardgames];
 
-  const results = items.map((item: any) => ({
+  const results = items.map((item: BggItem) => ({
     id: item['@_objectid'],
     name:
       typeof item.name === 'string'

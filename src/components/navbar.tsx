@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
                 sx={{ width: 32, height: 32 }}
               />
               <Link href="/profile" passHref>
-                <Button component="a" color="inherit">
+                <Button color="inherit">
                   Profile
                 </Button>
               </Link>
